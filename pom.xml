@@ -15,9 +15,14 @@
     <description>ExeCuter</description>
     <properties>
         <java.version>21</java.version>
-        <hilla.version>2.5.5</hilla.version>
+        <hilla.version>2.5.6</hilla.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
         <spring-shell.version>3.2.0</spring-shell.version>
+        <camel.version>4.3.0</camel.version>
+        <kafka.version>3.6.1</kafka.version>
+        <spring-kafka.version>3.1.1</spring-kafka.version>
+        <spring-security.version>6.2.1</spring-security.version>
+        <servlet-api.version>6.1.0-M1</servlet-api.version>
     </properties>
     <dependencies>
         <dependency>
@@ -63,15 +68,17 @@
         <dependency>
             <groupId>dev.hilla</groupId>
             <artifactId>hilla-react-spring-boot-starter</artifactId>
+            <version>${hilla.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
-            <version>4.3.0</version>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-streams</artifactId>
+            <version>${kafka.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -92,6 +99,7 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+            <version>${spring-kafka.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
@@ -100,18 +108,18 @@
         <dependency>
             <groupId>org.springframework.shell</groupId>
             <artifactId>spring-shell-starter</artifactId>
+            <version>${spring-shell.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
+            <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
@@ -162,7 +170,7 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-            <version>6.0.0</version>
+            <version>${spring-security.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -182,7 +190,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>5.8.7</version>
+            <version>${spring-security.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
