@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лейаут Редактора Кода</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* светло-серый цвет */
+        }
+
+        .editor-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            flex: 0 0 200px; /* фиксированная ширина */
+            background-color: #fff; /* белый цвет */
+            border-right: 1px solid #ccc; /* серая граница */
+            padding: 20px;
+            box-sizing: border-box; /* включаем отступы внутри элемента в размеры */
+        }
+
+        .editor {
+            flex: 1; /* занимает всю доступную ширину */
+            padding: 20px;
+        }
+
+        .code-editor {
+            width: 100%;
+            height: calc(100% - 40px); /* высота минус отступы сверху и снизу */
+            border: 1px solid #ccc; /* серая граница */
+            resize: none; /* отключаем возможность изменения размеров */
+            font-family: monospace; /* моноширинный шрифт */
+            font-size: 14px;
+            padding: 10px;
+            box-sizing: border-box; /* включаем отступы внутри элемента в размеры */
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff; /* синий цвет */
+            color: #fff; /* белый цвет */
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s; /* плавное изменение цвета при наведении */
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* более темный синий цвет при наведении */
+        }
+    </style>
+</head>
+<body>
+<div class="editor-container">
+    <div class="sidebar">
+        <button class="btn" id="runCode">Запуск</button>
+        <button class="btn">Отладка</button>
+    </div>
+    <div class="editor">
+        <textarea class="code-editor" id="codeEditor" placeholder="Введите ваш код здесь...">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}</textarea>
+        <div id="result"></div>
+    </div>
+</div>
+<script>
+    document.getElementById('runCode').addEventListener('click', function() {
+        const code = document.getElementById('codeEditor').value;
+        fetch('http://localhost:5000/run', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ code: code }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').textContent = data.result;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>
