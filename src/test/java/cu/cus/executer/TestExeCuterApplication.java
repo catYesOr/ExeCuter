@@ -23,8 +23,8 @@ public class TestExeCuterApplication {
 //        return new MariaDBContainer<>(DockerImageName.parse("mariadb:latest"));
 //    }
 
-    public static void main(String[] args) {
-        SpringApplication.from(ExeCuterApplication::main).with(TestExeCuterApplication.class).run(args);
-    }
+//    public static void main(String[] args) {
+//        SpringApplication.from(ExeCuterApplication::main).with(TestExeCuterApplication.class).run(args);
+//    }
 
 }
