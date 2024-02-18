@@ -1,5 +1,5 @@
 # Используйте официальный образ базового слоя Java
-FROM openjdk:11-jdk-slim as build
+FROM openjdk:21-jdk-slim as build
 
 # Установите рабочую директорию внутри контейнера
 WORKDIR /app

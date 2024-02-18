@@ -1,10 +1,21 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+
 services:
-  mariadb:
-    image: 'mariadb:latest'
+  db:
+    image: postgres
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
     environment:
-      - 'MARIADB_DATABASE=mydatabase'
-      - 'MARIADB_PASSWORD=secret'
-      - 'MARIADB_ROOT_PASSWORD=verysecret'
-      - 'MARIADB_USER=myuser'
+      POSTGRES_USER: mycustomuser # Задайте имя пользователя здесь
+      POSTGRES_PASSWORD: mycustompassword # Задайте пароль здесь
+      POSTGRES_DB: mycustomdb # Необязательно: задайте название базы данных, которую необходимо автоматически создать
+      volumes: "postgres_data:/var/lib/postgresql/data" # Постоянное хранилище для данных PostgreSQL
+      ports: "5432:5432" # Проброс порта, если нужен доступ с хост-машины
+
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - '3306'
+      - "8080:8080"
