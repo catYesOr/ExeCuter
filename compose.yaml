@@ -15,7 +15,24 @@ services:
       - "postgres_data:/var/lib/postgresql/data" # Постоянное хранилище для данных PostgreSQL
     ports:
       - "5432:5432" # Проброс порта, если нужен доступ с хост-машины
+  zookeeper:
+    image: zookeeper:latest
+    restart: always
+    ports:
+      - "2181:2181" # порт ZooKeeper
 
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    ports:
+      - "9092:9092" # порт Kafka
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181 # адрес ZooKeeper
+    depends_on:
+      - zookeeper # Указываем зависимость Kafka от ZooKeeper
   adminer:
     image: adminer
     restart: always
