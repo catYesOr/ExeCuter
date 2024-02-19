@@ -1,9 +1,9 @@
 package cu.cus.executer;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.data.repository.ListCrudRepository;
-import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@NoRepositoryBean
-public interface EmployeeRepository<T extends AbstractPersistable> extends ListCrudRepository<T, PK> {
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+    // Здесь можно добавить дополнительные методы поиска, если нужно
 }
